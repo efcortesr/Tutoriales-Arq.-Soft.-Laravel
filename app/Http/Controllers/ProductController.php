@@ -42,11 +42,16 @@ class ProductController extends Controller
         return view('product.index')->with("viewData", $viewData);
     }
 
-    public function show(string $id): View
+    /**
+     * Show a product or redirect to home if not found.
+     *
+     * @return View | \Illuminate\Http\RedirectResponse
+     */
+    public function show(string $id): View|\Illuminate\Http\RedirectResponse
     {
         $product = self::findProductById($id);
         if (!$product) {
-            abort(404);
+            return redirect()->route('home.index');
         }
 
         $viewData = [];
@@ -69,7 +74,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3',
-            'price' => 'required|numeric|min:0.01',
+            'price' => 'required|numeric|gt:0',
             'description' => 'nullable|max:255',
         ]);
 
@@ -88,7 +93,13 @@ class ProductController extends Controller
         $sessionProducts[] = $newProduct;
         $request->session()->put('products', $sessionProducts);
 
-        return redirect()->route('product.index')->with('success', 'Product created successfully (demo, stored in session)');
+        // mostrar vista de éxito con mensaje (actividad opcional)
+        $viewData = [];
+        $viewData['title'] = 'Product created';
+        $viewData['subtitle'] = 'Product created successfully';
+        $viewData['message'] = 'Product created successfully!';
+
+        return view('product.created')->with('viewData', $viewData);
     }
 }
 

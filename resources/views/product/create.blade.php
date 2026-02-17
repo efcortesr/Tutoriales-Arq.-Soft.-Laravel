@@ -28,7 +28,7 @@
 
                         <input type="text" class="form-control mb-2" placeholder="Enter name" name="name" value="{{ old('name') }}" />
 
-                        <input type="number" step="0.01" class="form-control mb-2" placeholder="Enter price" name="price" value="{{ old('price') }}" />
+                        <input type="number" step="0.01" min="0.01" class="form-control mb-2" placeholder="Enter price" name="price" value="{{ old('price') }}" />
 
                         <input type="text" class="form-control mb-2" placeholder="Enter description" name="description" value="{{ old('description') }}" />
 

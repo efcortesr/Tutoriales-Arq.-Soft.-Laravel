@@ -25,3 +25,15 @@ Route::get('/products', 'App\Http\Controllers\ProductController@index')->name("p
 Route::get('/products/create', 'App\Http\Controllers\ProductController@create')->name("product.create");
 Route::post('/products/save', 'App\Http\Controllers\ProductController@save')->name("product.save");
 Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name("product.show");
+
+// Contact page (actividad opcional)
+Route::get('/contact', function () {
+    $viewData = [];
+    $viewData['title'] = 'Contact - Online Store';
+    $viewData['subtitle'] = 'Contact';
+    $viewData['name'] = 'Daniel Correa';
+    $viewData['address'] = '123 Laravel St, Medellín, CO';
+    $viewData['phone'] = '+57 300 000 0000';
+
+    return view('home.contact')->with('viewData', $viewData);
+})->name('home.contact');
