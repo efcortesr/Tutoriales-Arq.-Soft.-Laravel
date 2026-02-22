@@ -30,8 +30,6 @@
 
                         <input type="number" step="0.01" min="0.01" class="form-control mb-2" placeholder="Enter price" name="price" value="{{ old('price') }}" />
 
-                        <input type="text" class="form-control mb-2" placeholder="Enter description" name="description" value="{{ old('description') }}" />
-
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('product.index') }}" class="btn btn-secondary">Back</a>
                             <input type="submit" class="btn btn-primary" value="Send" />

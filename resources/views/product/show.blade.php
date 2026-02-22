@@ -20,8 +20,12 @@
                     {{ $viewData["product"]["name"] }}
                     @endif
                 </h5>
-                <p class="card-text">{{ $viewData["product"]["description"] }}</p>
                 <p class="card-text"><strong>Precio:</strong> {{ isset($viewData['product']['price']) ? '$'.$viewData['product']['price'] : 'N/A' }}</p>
+                @foreach($viewData["product"]->comments as $comment)
+
+                - {{ $comment->getDescription() }}<br />
+
+                @endforeach
                 <a href="{{ route('product.index') }}" class="btn btn-secondary">Back</a>
             </div>
         </div>
