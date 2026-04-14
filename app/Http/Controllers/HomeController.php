@@ -8,7 +8,10 @@ class HomeController extends Controller
 {
     public function index(): View
     {
+        $viewData = [];
+        $viewData['title'] = 'Inicio';
+        $viewData['subtitle'] = 'Bienvenido a la aplicación';
 
-        return view('home.index');
+        return view('home.index')->with('viewData', $viewData);
     }
 }
